@@ -4,20 +4,22 @@ public class CuentaBancaria {
     private String titular;
     private float saldo;
 
-    public static void main(String[] args) {
-        CuentaBancaria cuenta1 = new CuentaBancaria("Diego Carranza", 50000);
-    }
-
     public CuentaBancaria(String titular, float saldo) {
         this.titular = titular;
         this.saldo = saldo;
     }
 
-    public void despositar_dinero(float saldo){
-        saldo = saldo + getSaldo();
+    public static void main(String[] args) {
     }
-    public void retirar_dinero(float saldo){
-        saldo = saldo - getSaldo();
+
+    public float depositar_dinero(float cantidad) {
+        saldo = saldo + cantidad;
+        return saldo;
+    }
+
+    public float retirar_dinero(float cantidad) {
+        saldo = saldo - cantidad;
+        return saldo;
     }
 
     public String getTitular() {
@@ -34,5 +36,20 @@ public class CuentaBancaria {
 
     public void setSaldo(float saldo) {
         this.saldo = saldo;
+    }
+}
+
+class CuentaCorriente extends CuentaBancaria {
+    private float limite_descubierto;
+
+    public static void main(String[] args){
+        CuentaCorriente cuenta01 = new CuentaCorriente("Diego Carranza", 90000);
+        System.out.println(cuenta01.depositar_dinero(30000));
+        
+    }
+
+    public CuentaCorriente(String titular, float saldo) {
+        super(titular, saldo);
+        this.limite_descubierto = saldo/2;
     }
 }
